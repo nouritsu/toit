@@ -13,6 +13,12 @@ struct Args {
     /// Path to root directory
     #[clap(short, long = "root", default_value = ".")]
     root: PathBuf,
+
+    #[clap(long, default_value_t = 1200)]
+    width: u32,
+
+    #[clap(long, default_value_t = 1200)]
+    height: u32,
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -43,7 +49,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let browser = Browser::new(
         LaunchOptionsBuilder::default()
-            .window_size(Some((1200, 1200)))
+            .window_size(Some((args.width, args.height)))
             .build()?,
     )?;
 
