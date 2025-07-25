@@ -28,7 +28,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let md = markdown_parser::read_file(&path)?;
 
         let fm: PostFrontMatter = toml::from_str(md.front_matter())?;
-        let post = Post::from_parts(fm, md.content().to_owned());
+        let post = Post::from_parts(fm, md.content());
 
         let html = post.to_html(&lh)?;
         let tmp_file = posts_html_dir
